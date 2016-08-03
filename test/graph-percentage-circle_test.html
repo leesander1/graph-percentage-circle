@@ -2,28 +2,28 @@
 
 <html>
   <head>
-    <title>polymer-percentage-radius test</title>
+    <title>graph-percentage-circle test</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../bower_components/web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../polymer-percentage-radius.html">
+    <link rel="import" href="../graph-percentage-circle.html">
   </head>
   <body>
 
     <test-fixture id="basic">
       <template>
-        <polymer-percentage-radius></polymer-percentage-radius>
+        <graph-percentage-circle></graph-percentage-circle>
       </template>
     </test-fixture>
 
     <script>
-      suite('polymer-percentage-radius', function() {
+      suite('graph-percentage-circle', function() {
 
         test('instantiating the element works', function() {
           var element = fixture('basic');
-          assert.equal(element.is, 'polymer-percentage-radius');
+          assert.equal(element.is, 'graph-percentage-circle');
         });
 
       });

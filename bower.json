@@ -1,7 +1,7 @@
 {
-  "name": "polymer-percentage-radius",
+  "name": "graph-percentage-circle",
   "description": "polymer element with radus percantage",
-  "main": "polymer-percentage-radius.html",
+  "main": "graph-percentage-circle.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   },
