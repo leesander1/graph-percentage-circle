@@ -1,0 +1,174 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+
+<!--
+`polymer-percentage-radius`
+polymer element with radus percantage
+
+@demo demo/index.html
+-->
+
+<dom-module id="polymer-percentage-radius">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        position : relative;
+      }
+
+      svg{
+
+        position:absolute;
+
+      }
+      .space{
+        display: inline-block;
+        width:140px;
+        height: 140px;
+      }
+      #mytext{
+        position: absolute;
+        width:140px;
+        height:140px;
+
+        text-align: center;
+        line-height: 140px;
+        font-weight: bold;
+        font-family: sans-serif;
+        font-size: 26px;
+
+      }
+      .perc{
+        font-size: 14px;
+
+      }
+      </style>
+
+      <div class="space">
+      <svg width="140" height="140">
+
+           <circle cx="70" cy="70" r="62" stroke="black" stroke-width="0" fill="#fbfbfb" />
+           <path id="arc1" fill-opacity="0" stroke-width="12" />
+
+      </svg>
+      <span id="mytext"><span id="numbers">0</span><span class="perc">%</span></span>
+      </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'polymer-percentage-radius',
+
+      properties: {
+
+          strokeColor : String,
+          /** The value  to reach */
+          perc : Number,
+          /** The presents of this property determins if the animation has to start automatically */
+          noAutostart : Boolean
+
+
+
+
+
+
+      },
+      ready : function() {
+        var arc1 = Polymer.dom(this.$.arc1);
+        var numbers = Polymer.dom(this.$.numbers);
+        var mytext = Polymer.dom(this.$.mytext);
+
+
+
+
+        //console.log("perc" + targetPerc);
+
+        arc1.setAttribute("stroke", this.strokeColor || "#bbb");
+        mytext.setAttribute('style',  'color:'+ ( this.strokeColor  || ' #bbb' ) );
+
+
+
+
+
+
+
+           console.log("this.autoStart : "+ this.noAutostart);
+           if( this.noAutostart !== true ){ this._drawCircles(this.perc); }
+
+
+        },
+        _polarToCartesian : function(centerX, centerY, radius, angleInDegrees) {
+          var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+          return {
+            x: centerX + (radius * Math.cos(angleInRadians)),
+            y: centerY + (radius * Math.sin(angleInRadians))
+          };
+        },
+         _describeArc : function(x, y, radius, startAngle, endAngle){
+
+            var start = this._polarToCartesian(x, y, radius, endAngle);
+            var end = this._polarToCartesian(x, y, radius, startAngle);
+
+            var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+            var d = [
+                "M", start.x, start.y,
+                "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+            ].join(" ");
+
+            return d;
+        },
+         _drawCircles : function(perc){
+
+           var arc1 = Polymer.dom(this.$.arc1);
+           var numbers = Polymer.dom(this.$.numbers);
+           var mytext = Polymer.dom(this.$.mytext);
+
+           var percCount = 0;
+           var targetPerc = Math.floor(perc/100*360) || 0;
+           console.log('in drw circles');
+          //console.log('entered and this.perc : ' + perc);
+
+              var inter = setInterval( () => {
+
+              percCount += 1;
+
+              if(perc == 0 || perc == undefined ){
+
+                  numbers.innerHTML = "0";
+                  clearInterval(inter);
+              }else{
+                    if(percCount <= targetPerc ){
+
+                          arc1.setAttribute("d", this._describeArc(70, 70, 56, 0, percCount));
+                          //console.log(percCount);
+                          numbers.innerHTML = Math.ceil(percCount/360*100);
+                      }else{
+                          //console.log("in else if : "+  percCount);
+                          clearInterval(inter);
+
+
+
+                      }
+                      if( percCount == 360 ){
+                          //console.log("in else if : " + percCount);
+                          clearInterval(inter);
+                          percCount = 359;
+                          arc1.setAttribute("d", (this._describeArc(70, 70, 56, 0, percCount)+ " Z"));
+
+
+                      }
+              }
+
+            }, 5);
+
+       },
+        play : function(){
+          console.log('in play');
+          this._drawCircles(this.perc);
+        }
+
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>polymer-percentage-radius demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+
+
+
+    <link rel="import" href="../polymer-percentage-radius.html">
+
+
+  </head>
+  <body>
+      <polymer-percentage-radius perc="0"></polymer-percentage-radius>
+      <polymer-percentage-radius perc="1" stroke-color="#41a58f"></polymer-percentage-radius>
+
+      <polymer-percentage-radius perc="2"></polymer-percentage-radius>
+      <polymer-percentage-radius perc="50" stroke-color="#AAFAC8"></polymer-percentage-radius>
+      <polymer-percentage-radius perc="99" stroke-color="#F9A03F"></polymer-percentage-radius>
+      <polymer-percentage-radius class="ciao" perc="100" no-autostart stroke-color="#41a58f"></polymer-percentage-radius>
+
+
+
+
+  <script>
+
+
+
+   setTimeout(function(){
+        var x = document.querySelector(".ciao");
+        x.play();
+
+   }, 5000);
+
+
+  </script>
+  </body>
+</html>
