@@ -12,7 +12,7 @@ the next example uses the element at 0% without a specified color.
 
     <graph-percentage-circle perc="0"></graph-percentage-circle>
 
-![alt tag](img/element_at_zero_perc.gif)
+![alt tag](img/element-at-zero-perc.gif)
 
 ===========================================
 
