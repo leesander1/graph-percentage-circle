@@ -1,10 +1,16 @@
 {
   "name": "graph-percentage-circle",
-  "description": "polymer element with radus percantage",
+  "description": "polymer element with radius percantage",
   "main": "graph-percentage-circle.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   },
+  "keywords": [
+    "web-component",
+    "web-components",
+    "infographic",
+    "polymer"
+  ],
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
